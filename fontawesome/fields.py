@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 
 from . import Icon
 from .forms import IconFormField
@@ -18,7 +18,7 @@ class IconField(models.Field):
     def get_internal_type(self):
         return 'CharField'
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, *args):
         if value is None:
             return value
         return Icon(id=value)
